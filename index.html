@@ -397,6 +397,100 @@
 
     .dr-footer-text { font-size: 11px; color: #333; letter-spacing: 1px; }
 
+    /* ── CARROSSEL ── */
+.dr-carousel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dr-carousel-track {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.dr-slide {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+}
+
+.dr-slide.active { display: flex; }
+
+.dr-slide-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: #111;
+  border: 1px solid #222;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dr-slide-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dr-slide-info {
+  padding: 20px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dr-slide-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: #fff;
+}
+
+.dr-slide-tag {
+  font-size: 11px;
+  color: #8B5CF6;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.dr-carousel-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #666;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.dr-carousel-btn:hover { border-color: #8B5CF6; color: #8B5CF6; }
+
+.dr-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.dr-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #333;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dr-dot.active { background: #8B5CF6; }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       .dr-nav { padding: 12px 16px; }
@@ -500,8 +594,63 @@
     </div>
   </div>
 
-  <!-- ESTILOS / PORTFÓLIO -->
-  <section class="dr-styles" id="estilos">
+  <!-- PORTFÓLIO -->
+<section class="dr-styles" id="estilos">
+  <div class="dr-section-label">Portfólio</div>
+  <div class="dr-section-title">Trabalhos realizados</div>
+
+  <div class="dr-carousel">
+    <button class="dr-carousel-btn dr-prev" onclick="slide(-1)">
+      <i class="ti ti-arrow-left" aria-hidden="true"></i>
+    </button>
+
+    <div class="dr-carousel-track" id="carouselTrack">
+
+      <!-- SLIDE 1 — substitui src pela foto real -->
+      <div class="dr-slide">
+        <div class="dr-slide-img">
+          <div class="dr-style-placeholder"><i class="ti ti-needle-thread" aria-hidden="true"></i></div>
+        </div>
+        <div class="dr-slide-info">
+          <div class="dr-slide-name">Blackwork</div>
+          <div class="dr-slide-tag">Traço preciso · Sombreamento</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="dr-slide">
+        <div class="dr-slide-img">
+          <div class="dr-style-placeholder"><i class="ti ti-palette" aria-hidden="true"></i></div>
+        </div>
+        <div class="dr-slide-info">
+          <div class="dr-slide-name">Colorido</div>
+          <div class="dr-slide-tag">Vibrante · Duradouro</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="dr-slide">
+        <div class="dr-slide-img">
+          <div class="dr-style-placeholder"><i class="ti ti-flower" aria-hidden="true"></i></div>
+        </div>
+        <div class="dr-slide-info">
+          <div class="dr-slide-name">Autoral</div>
+          <div class="dr-slide-tag">Criação exclusiva</div>
+        </div>
+      </div>
+
+      <!-- Adiciona mais slides aqui -->
+
+    </div>
+
+    <button class="dr-carousel-btn dr-next" onclick="slide(1)">
+      <i class="ti ti-arrow-right" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <!-- Bolinhas indicadoras -->
+  <div class="dr-dots" id="dots"></div>
+</section>
     <div class="dr-section-label">Especialidades</div>
     <div class="dr-section-title">Estilos que domino</div>
     <div class="dr-styles-grid">
@@ -595,6 +744,31 @@
     <div class="dr-footer-logo">Dor<span>ai</span>sa</div>
     <div class="dr-footer-text">© 2025 · Tattoo Artist · Santa Maria, RS</div>
   </footer>
+
+  <script>
+  let current = 0;
+  const slides = document.querySelectorAll('.dr-slide');
+  const dotsEl = document.getElementById('dots');
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dr-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsEl.appendChild(dot);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsEl.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsEl.children[current].classList.add('active');
+  }
+
+  function slide(dir) { goTo(current + dir); }
+
+  slides[0].classList.add('active');
+</script>
 
 </body>
 </html>
