@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doraisa — Tattoo Artist</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #e5e5e5;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .dr-nav {
+      background: #0a0a0a;
+      border-bottom: 1px solid #1a1a1a;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .dr-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      letter-spacing: 4px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .dr-logo span { color: #8B5CF6; }
+
+    .dr-nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .dr-nav-links li {
+      font-size: 11px;
+      color: #666;
+      cursor: pointer;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .dr-nav-links li.active { color: #8B5CF6; }
+    .dr-nav-links a { color: inherit; text-decoration: none; }
+
+    .dr-btn-nav {
+      background: transparent;
+      border: 1px solid #8B5CF6;
+      color: #8B5CF6;
+      padding: 8px 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dr-btn-nav:hover { background: #8B5CF6; color: #fff; }
+
+    /* ── HERO ── */
+    .dr-hero {
+      padding: 80px 32px 72px;
+      border-bottom: 1px solid #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .dr-hero-left { flex: 1; }
+
+    .dr-hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8B5CF6;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dr-hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: #8B5CF6;
+    }
+
+    .dr-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 600;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+    .dr-hero h1 em { font-style: italic; color: #8B5CF6; }
+
+    .dr-hero-sub {
+      font-size: 13px;
+      color: #555;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .dr-hero p {
+      font-size: 15px;
+      color: #888;
+      max-width: 380px;
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .dr-hero-actions { display: flex; gap: 14px; align-items: center; }
+
+    .dr-btn-primary {
+      background: #8B5CF6;
+      color: #fff;
+      border: none;
+      padding: 13px 28px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s;
+    }
+    .dr-btn-primary:hover { opacity: 0.85; }
+
+    .dr-btn-outline {
+      background: transparent;
+      color: #e5e5e5;
+      border: 1px solid #333;
+      padding: 12px 24px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .dr-btn-outline:hover { border-color: #8B5CF6; color: #8B5CF6; }
+
+    .dr-hero-right { flex-shrink: 0; }
+
+    .dr-hero-img-wrap {
+      width: 320px;
+      height: 420px;
+      background: #111;
+      border: 1px solid #222;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .dr-hero-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #8B5CF6;
+    }
+
+    /* Substitua essa div por uma <img src="foto.jpg"> */
+    .dr-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: #333;
+    }
+    .dr-placeholder i { font-size: 48px; }
+    .dr-placeholder span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .dr-hero-tag {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid #222;
+      padding: 6px 12px;
+      font-size: 10px;
+      color: #8B5CF6;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── STATS ── */
+    .dr-stats {
+      background: #0f0f0f;
+      border-bottom: 1px solid #1a1a1a;
+      padding: 28px 32px;
+      display: flex;
+      gap: 0;
+    }
+
+    .dr-stat {
+      flex: 1;
+      text-align: center;
+      padding: 0 20px;
+      border-right: 1px solid #1a1a1a;
+    }
+    .dr-stat:last-child { border-right: none; }
+
+    .dr-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: #8B5CF6;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .dr-stat-label {
+      font-size: 10px;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ── ESTILOS ── */
+    .dr-styles {
+      padding: 64px 32px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .dr-section-label {
+      font-size: 10px;
+      color: #8B5CF6;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dr-section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: #8B5CF6;
+    }
+
+    .dr-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      color: #fff;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .dr-styles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .dr-style-card {
+      background: #111;
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* Primeira card maior */
+    .dr-style-card:first-child {
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    .dr-style-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dr-style-placeholder i { font-size: 48px; color: #1a1a1a; }
+
+    /* Substitua .dr-style-placeholder por uma <img src="foto.jpg" style="width:100%;height:100%;object-fit:cover;"> */
+
+    .dr-style-info {
+      position: relative;
+      z-index: 1;
+      padding: 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+      width: 100%;
+    }
+
+    .dr-style-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .dr-style-tag {
+      font-size: 10px;
+      color: #8B5CF6;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── SOBRE ── */
+    .dr-about {
+      padding: 64px 32px;
+      border-bottom: 1px solid #1a1a1a;
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    .dr-about-left { flex: 1; }
+
+    .dr-about-left p {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .dr-about-left p strong { color: #e5e5e5; font-weight: 500; }
+
+    .dr-about-right { flex-shrink: 0; width: 260px; }
+
+    .dr-info-item {
+      border-bottom: 1px solid #1a1a1a;
+      padding: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dr-info-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1.5px; }
+    .dr-info-value { font-size: 13px; color: #e5e5e5; }
+
+    /* ── CTA ── */
+    .dr-cta {
+      padding: 80px 32px;
+      text-align: center;
+      background: #0f0f0f;
+    }
+
+    .dr-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      color: #fff;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .dr-cta h2 em { font-style: italic; color: #8B5CF6; }
+
+    .dr-cta p { font-size: 14px; color: #666; margin-bottom: 32px; letter-spacing: 1px; }
+
+    .dr-cta-btns { display: flex; justify-content: center; gap: 14px; }
+
+    /* ── FOOTER ── */
+    .dr-footer {
+      background: #080808;
+      border-top: 1px solid #1a1a1a;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dr-footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      letter-spacing: 4px;
+      color: #444;
+      text-transform: uppercase;
+    }
+    .dr-footer-logo span { color: #8B5CF6; }
+
+    .dr-footer-text { font-size: 11px; color: #333; letter-spacing: 1px; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .dr-nav { padding: 12px 16px; }
+      .dr-nav-links { display: none; }
+
+      .dr-hero {
+        flex-direction: column;
+        padding: 48px 16px 40px;
+        gap: 32px;
+      }
+      .dr-hero h1 { font-size: 44px; }
+      .dr-hero p { max-width: 100%; }
+      .dr-hero-right { width: 100%; }
+      .dr-hero-img-wrap { width: 100%; height: 300px; }
+      .dr-hero-actions { flex-direction: column; }
+      .dr-btn-primary, .dr-btn-outline { width: 100%; text-align: center; }
+
+      .dr-stats { flex-wrap: wrap; padding: 20px 16px; }
+      .dr-stat { flex: 1 1 50%; padding: 12px; border-right: none; border-bottom: 1px solid #1a1a1a; }
+
+      .dr-styles { padding: 48px 16px; }
+      .dr-styles-grid { grid-template-columns: 1fr 1fr; }
+      .dr-style-card:first-child { grid-row: span 1; aspect-ratio: 3/4; }
+
+      .dr-about {
+        flex-direction: column;
+        padding: 48px 16px;
+        gap: 32px;
+      }
+      .dr-about-right { width: 100%; }
+
+      .dr-cta { padding: 56px 16px; }
+      .dr-cta h2 { font-size: 36px; }
+      .dr-cta-btns { flex-direction: column; align-items: center; }
+      .dr-btn-primary, .dr-btn-outline { width: 100%; max-width: 300px; }
+
+      .dr-footer {
+        flex-direction: column;
+        gap: 8px;
+        padding: 20px 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="dr-nav">
+    <div class="dr-logo">Dor<span>ai</span>sa</div>
+    <ul class="dr-nav-links">
+      <li class="active"><a href="#inicio">Início</a></li>
+      <li><a href="#estilos">Portfólio</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="dr-btn-nav">Agendar</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="dr-hero" id="inicio">
+    <div class="dr-hero-left">
+      <div class="dr-hero-eyebrow">Tattoo Artist · Santa Maria, RS</div>
+      <h1>Arte que<br>vive na <em>pele</em></h1>
+      <div class="dr-hero-sub">Blackwork · Colorido · Autoral</div>
+      <p>Cada tatuagem é única. Do traço mais delicado ao blackwork mais denso — criamos juntos algo que vai durar para sempre.</p>
+      <div class="dr-hero-actions">
+        <a href="#estilos" class="dr-btn-primary">Ver portfólio</a>
+        <a href="#contato" class="dr-btn-outline">Agendar consulta</a>
+      </div>
+    </div>
+    <div class="dr-hero-right">
+      <div class="dr-hero-img-wrap">
+        <!-- Substitua por: <img src="foto-destaque.jpg" alt="Doraisa" style="width:100%;height:100%;object-fit:cover;"> -->
+        <div class="dr-placeholder">
+          <i class="ti ti-needle-thread" aria-hidden="true"></i>
+          <span>Foto destaque</span>
+        </div>
+        <div class="dr-hero-tag">Disponível para novos projetos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="dr-stats">
+    <div class="dr-stat">
+      <div class="dr-stat-num">5+</div>
+      <div class="dr-stat-label">Anos de experiência</div>
+    </div>
+    <div class="dr-stat">
+      <div class="dr-stat-num">500+</div>
+      <div class="dr-stat-label">Tattoos realizadas</div>
+    </div>
+    <div class="dr-stat">
+      <div class="dr-stat-num">2</div>
+      <div class="dr-stat-label">Estilos principais</div>
+    </div>
+    <div class="dr-stat">
+      <div class="dr-stat-num">100%</div>
+      <div class="dr-stat-label">Arte autoral</div>
+    </div>
+  </div>
+
+  <!-- ESTILOS / PORTFÓLIO -->
+  <section class="dr-styles" id="estilos">
+    <div class="dr-section-label">Especialidades</div>
+    <div class="dr-section-title">Estilos que domino</div>
+    <div class="dr-styles-grid">
+
+      <!-- Card maior: Blackwork -->
+      <div class="dr-style-card">
+        <!-- Substitua por: <img src="blackwork.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"> -->
+        <div class="dr-style-placeholder"><i class="ti ti-sun" aria-hidden="true"></i></div>
+        <div class="dr-style-info">
+          <div class="dr-style-name">Blackwork</div>
+          <div class="dr-style-tag">Traço preciso · Sombreamento</div>
+        </div>
+      </div>
+
+      <!-- Card: Colorido -->
+      <div class="dr-style-card">
+        <div class="dr-style-placeholder"><i class="ti ti-palette" aria-hidden="true"></i></div>
+        <div class="dr-style-info">
+          <div class="dr-style-name">Colorido</div>
+          <div class="dr-style-tag">Vibrante · Duradouro</div>
+        </div>
+      </div>
+
+      <!-- Card: Autorais -->
+      <div class="dr-style-card">
+        <div class="dr-style-placeholder"><i class="ti ti-flower" aria-hidden="true"></i></div>
+        <div class="dr-style-info">
+          <div class="dr-style-name">Autorais</div>
+          <div class="dr-style-tag">Criação exclusiva</div>
+        </div>
+      </div>
+
+      <!-- Card: Geométrico -->
+      <div class="dr-style-card">
+        <div class="dr-style-placeholder"><i class="ti ti-geometry" aria-hidden="true"></i></div>
+        <div class="dr-style-info">
+          <div class="dr-style-name">Geométrico</div>
+          <div class="dr-style-tag">Precisão · Simetria</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="dr-about" id="sobre">
+    <div class="dr-about-left">
+      <div class="dr-section-label" style="margin-bottom:12px">Sobre</div>
+      <div class="dr-section-title" style="font-size:32px;margin-bottom:24px">Doraisa</div>
+      <p>Tatuadora há mais de <strong>5 anos</strong>, especializada em blackwork e colorido. Cada projeto nasce de uma conversa — entendo o que você carrega e transformo em arte permanente.</p>
+      <p>Trabalho com <strong>arte autoral</strong>: nada de cópia, tudo criado do zero pra você. Meu estúdio é um espaço seguro, higienizado e pensado pra você se sentir bem do início ao fim.</p>
+    </div>
+    <div class="dr-about-right">
+      <div class="dr-info-item">
+        <span class="dr-info-label">Localização</span>
+        <span class="dr-info-value">Santa Maria, RS</span>
+      </div>
+      <div class="dr-info-item">
+        <span class="dr-info-label">Agendamento</span>
+        <span class="dr-info-value">Via Instagram</span>
+      </div>
+      <div class="dr-info-item">
+        <span class="dr-info-label">Estilos</span>
+        <span class="dr-info-value">Blackwork · Colorido</span>
+      </div>
+      <div class="dr-info-item">
+        <span class="dr-info-label">Arte autoral</span>
+        <span class="dr-info-value">Sim, sempre</span>
+      </div>
+      <div class="dr-info-item">
+        <span class="dr-info-label">Orçamento</span>
+        <span class="dr-info-value">Consulta gratuita</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="dr-cta" id="contato">
+    <div class="dr-section-label" style="justify-content:center;margin-bottom:20px">Contato</div>
+    <h2>Vamos criar algo <em>único?</em></h2>
+    <p>Mande uma mensagem e vamos conversar sobre seu projeto</p>
+    <div class="dr-cta-btns">
+      <!-- Troca o href pelo link do Instagram ou WhatsApp dela -->
+      <a href="#" class="dr-btn-primary">Agendar consulta</a>
+      <a href="#" class="dr-btn-outline">Ver Instagram</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="dr-footer">
+    <div class="dr-footer-logo">Dor<span>ai</span>sa</div>
+    <div class="dr-footer-text">© 2025 · Tattoo Artist · Santa Maria, RS</div>
+  </footer>
+
+</body>
+</html>
