@@ -34,7 +34,20 @@
     .dr-nav-links li { font-size: 11px; color: #666; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; }
     .dr-nav-links li.active { color: #8B5CF6; }
     .dr-nav-links a { color: inherit; text-decoration: none; }
-    .dr-btn-nav { background: transparent; border: 1px solid #8B5CF6; color: #8B5CF6; padding: 8px 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; }
+    .dr-btn-nav {
+      background: transparent;
+      border: 1px solid #8B5CF6;
+      color: #8B5CF6;
+      padding: 8px 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dr-btn-nav:hover { background: #8B5CF6; color: #fff; }
 
     /* ── HERO ── */
     .dr-hero { padding: 80px 32px 72px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
@@ -46,8 +59,41 @@
     .dr-hero-sub { font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
     .dr-hero p { font-size: 15px; color: #888; max-width: 380px; line-height: 1.8; margin-bottom: 36px; }
     .dr-hero-actions { display: flex; gap: 14px; align-items: center; }
-    .dr-btn-primary { background: #8B5CF6; color: #fff; border: none; padding: 13px 28px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-block; text-decoration: none; }
-    .dr-btn-outline { background: transparent; color: #e5e5e5; border: 1px solid #333; padding: 12px 24px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-block; text-decoration: none; }
+
+    .dr-btn-primary {
+      background: #8B5CF6;
+      color: #fff;
+      border: none;
+      padding: 13px 28px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .dr-btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .dr-btn-outline {
+      background: transparent;
+      color: #e5e5e5;
+      border: 1px solid #444;
+      padding: 12px 24px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .dr-btn-outline:hover { border-color: #8B5CF6; color: #8B5CF6; transform: translateY(-1px); }
+
     .dr-hero-right { flex-shrink: 0; }
     .dr-hero-img-wrap { width: 320px; height: 420px; background: #111; border: 1px solid #222; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .dr-hero-img-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #8B5CF6; }
@@ -65,23 +111,15 @@
 
     /* ── PORTFÓLIO ── */
     .dr-portfolio { padding: 56px 32px; border-bottom: 1px solid #1a1a1a; }
-
-    .dr-portfolio-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 28px;
-    }
-
+    .dr-portfolio-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; }
     .dr-section-label { font-size: 10px; color: #8B5CF6; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
     .dr-section-label::before { content: ''; display: block; width: 24px; height: 1px; background: #8B5CF6; }
     .dr-section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: #fff; font-weight: 600; margin: 0; }
 
-    /* Setas no header */
     .dr-nav-arrows { display: flex; gap: 8px; }
     .dr-arrow {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border: 1px solid #2a2a2a;
       background: transparent;
       color: #555;
@@ -89,13 +127,14 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 16px;
-      transition: border-color 0.2s, color 0.2s;
+      font-size: 14px;
+      border-radius: 50%;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
-    .dr-arrow:hover { border-color: #8B5CF6; color: #8B5CF6; }
+    .dr-arrow:hover { border-color: #8B5CF6; color: #8B5CF6; background: rgba(139,92,246,0.08); }
 
-    /* Carrossel */
-    .dr-carousel-track { overflow: hidden; }
+    .dr-carousel-track { overflow: hidden; cursor: grab; }
+    .dr-carousel-track:active { cursor: grabbing; }
     .dr-slide { display: none; }
     .dr-slide.active { display: block; }
 
@@ -111,22 +150,13 @@
       justify-content: center;
     }
     .dr-slide-img img { width: 100%; height: 100%; object-fit: cover; }
-
     .dr-slide-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
     .dr-slide-placeholder i { font-size: 40px; color: #1a1a1a; }
 
-    .dr-slide-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0 0;
-      border-top: 1px solid #1a1a1a;
-      margin-top: 0;
-    }
+    .dr-slide-info { display: flex; justify-content: space-between; align-items: center; padding: 14px 0 0; border-top: 1px solid #1a1a1a; }
     .dr-slide-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #fff; }
     .dr-slide-tag { font-size: 10px; color: #8B5CF6; letter-spacing: 2px; text-transform: uppercase; }
 
-    /* Contador */
     .dr-counter { font-size: 11px; color: #444; letter-spacing: 2px; margin-top: 12px; }
     .dr-counter span { color: #8B5CF6; }
 
@@ -270,8 +300,6 @@
           <div class="dr-slide-tag">Criação exclusiva</div>
         </div>
       </div>
-
-      <!-- Adicione mais slides aqui -->
     </div>
 
     <div class="dr-counter"><span id="currentSlide">1</span> / <span id="totalSlides">3</span></div>
@@ -322,8 +350,16 @@
     }
 
     function slide(dir) { goTo(current + dir); }
-  </script>
 
+    // Swipe mobile
+    const track = document.querySelector('.dr-carousel-track');
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) slide(diff > 0 ? 1 : -1);
+    });
+  </script>
 
 </body>
 </html>
